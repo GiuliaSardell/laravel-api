@@ -9,11 +9,10 @@
   <title>Boolpress</title>
 </head>
 <body>
-  <h1>home</h1>
-
+  
   <div id="app">
 
-    
+
   </div>
 
 <script src="{{'js/guest.js'}}"></script>
