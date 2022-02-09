@@ -3,7 +3,7 @@
     <h3>
       <a href="#">{{post.title}}</a>
     </h3>
-    <p class="data">{{post.created_at}}</p>
+    <p class="data">{{formatDate}}</p>
     <p class="text">{{ truncateText }}</p>
   </article>
 </template>
@@ -17,6 +17,17 @@ export default {
   computed: {
     truncateText(){
       return this.post.content.substr(0, 50) + '...';
+    },
+    formatDate(){
+      const d = new Date(this.post.created_at);
+      let day = d.getDate();
+      let month = d.getMonth();
+      const year = d.getFullYear();
+
+      if(day < 10) day = '0'+day;
+      if(month < 10) month = '0'+month;
+
+      return `${day}/${month}/${year}`;
     }
   }
 }

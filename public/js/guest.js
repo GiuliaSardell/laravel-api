@@ -2074,6 +2074,15 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     truncateText: function truncateText() {
       return this.post.content.substr(0, 50) + '...';
+    },
+    formatDate: function formatDate() {
+      var d = new Date(this.post.created_at);
+      var day = d.getDate();
+      var month = d.getMonth();
+      var year = d.getFullYear();
+      if (day < 10) day = '0' + day;
+      if (month < 10) month = '0' + month;
+      return "".concat(day, "/").concat(month, "/").concat(year);
     }
   }
 });
@@ -3496,7 +3505,7 @@ var render = function () {
       _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(_vm.post.title))]),
     ]),
     _vm._v(" "),
-    _c("p", { staticClass: "data" }, [_vm._v(_vm._s(_vm.post.created_at))]),
+    _c("p", { staticClass: "data" }, [_vm._v(_vm._s(_vm.formatDate))]),
     _vm._v(" "),
     _c("p", { staticClass: "text" }, [_vm._v(_vm._s(_vm.truncateText))]),
   ])
