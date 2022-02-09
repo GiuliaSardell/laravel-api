@@ -1,8 +1,10 @@
 <template>
   <article>
-    <h3>{{post.title}}</h3>
+    <h3>
+      <a href="#">{{post.title}}</a>
+    </h3>
     <p class="data">{{post.created_at}}</p>
-    <p class="text">{{post.content}}</p>
+    <p class="text">{{ truncateText }}</p>
   </article>
 </template>
 
@@ -11,6 +13,11 @@ export default {
   name: 'PostItems',
   props: {
     'post' : Object
+  },
+  computed: {
+    truncateText(){
+      return this.post.content.substr(0, 50) + '...';
+    }
   }
 }
 </script>
@@ -24,6 +31,13 @@ export default {
     }
     .text{
       padding: 5px 0;
+    }
+    a{
+      color:black;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
     }
   }
 </style>

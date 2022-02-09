@@ -2064,10 +2064,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostItems',
   props: {
     'post': Object
+  },
+  computed: {
+    truncateText: function truncateText() {
+      return this.post.content.substr(0, 50) + '...';
+    }
   }
 });
 
@@ -2142,7 +2149,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "article[data-v-1b2157a4] {\n  margin-bottom: 40px;\n}\narticle .data[data-v-1b2157a4] {\n  font-size: 12px;\n  font-style: italic;\n}\narticle .text[data-v-1b2157a4] {\n  padding: 5px 0;\n}", ""]);
+exports.push([module.i, "article[data-v-1b2157a4] {\n  margin-bottom: 40px;\n}\narticle .data[data-v-1b2157a4] {\n  font-size: 12px;\n  font-style: italic;\n}\narticle .text[data-v-1b2157a4] {\n  padding: 5px 0;\n}\narticle a[data-v-1b2157a4] {\n  color: black;\n  text-decoration: none;\n}\narticle a[data-v-1b2157a4]:hover {\n  text-decoration: underline;\n}", ""]);
 
 // exports
 
@@ -3485,11 +3492,13 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("article", [
-    _c("h3", [_vm._v(_vm._s(_vm.post.title))]),
+    _c("h3", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(_vm.post.title))]),
+    ]),
     _vm._v(" "),
     _c("p", { staticClass: "data" }, [_vm._v(_vm._s(_vm.post.created_at))]),
     _vm._v(" "),
-    _c("p", { staticClass: "text" }, [_vm._v(_vm._s(_vm.post.content))]),
+    _c("p", { staticClass: "text" }, [_vm._v(_vm._s(_vm.truncateText))]),
   ])
 }
 var staticRenderFns = []
