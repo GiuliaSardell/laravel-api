@@ -1959,6 +1959,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Posts',
@@ -1967,10 +1977,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      apiUrl: 'http://127.0.0.1:8000/api/posts',
+      apiUrl: 'http://127.0.0.1:8000/api/posts?page=',
       //prendo tutti i post
-      posts: null //per gestire il loading
-
+      posts: null,
+      //per gestire il loading
+      pages: {}
     };
   },
   mounted: function mounted() {
@@ -1980,9 +1991,14 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get(this.apiUrl).then(function (res) {
-        _this.posts = res.data;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get(this.apiUrl + page).then(function (res) {
+        _this.posts = res.data.data;
         console.log(_this.posts);
+        _this.pages = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
       });
     }
   }
@@ -3402,6 +3418,32 @@ var render = function () {
         _vm._l(_vm.posts, function (post) {
           return _c("PostItems", { key: post.id, attrs: { post: post } })
         }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.pages.current === 1 },
+            on: {
+              click: function ($event) {
+                return _vm.getPosts(_vm.pages.current - 1)
+              },
+            },
+          },
+          [_vm._v("Prev")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.pages.current === _vm.pages.last },
+            on: {
+              click: function ($event) {
+                return _vm.getPosts(_vm.pages.current + 1)
+              },
+            },
+          },
+          [_vm._v("Next")]
+        ),
       ],
       2
     ),
