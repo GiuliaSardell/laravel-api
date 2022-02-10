@@ -1969,6 +1969,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Posts',
@@ -2117,7 +2126,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "main[data-v-4ac4d2f8] {\n  padding: 30px 0;\n}", ""]);
+exports.push([module.i, "main[data-v-4ac4d2f8] {\n  padding: 30px 0;\n}\nmain .container[data-v-4ac4d2f8] {\n  margin-bottom: 50px;\n}", ""]);
 
 // exports
 
@@ -3409,47 +3418,60 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", [
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
-        _c("h1", [_vm._v("i miei post")]),
-        _vm._v(" "),
-        _vm._l(_vm.posts, function (post) {
-          return _c("PostItems", { key: post.id, attrs: { post: post } })
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.pages.current === 1 },
-            on: {
-              click: function ($event) {
-                return _vm.getPosts(_vm.pages.current - 1)
-              },
-            },
-          },
-          [_vm._v("Prev")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.pages.current === _vm.pages.last },
-            on: {
-              click: function ($event) {
-                return _vm.getPosts(_vm.pages.current + 1)
-              },
-            },
-          },
-          [_vm._v("Next")]
-        ),
-      ],
-      2
-    ),
+    _vm.posts
+      ? _c("div", [
+          _c(
+            "div",
+            { staticClass: "container" },
+            [
+              _c("h1", [_vm._v("i miei post")]),
+              _vm._v(" "),
+              _vm._l(_vm.posts, function (post) {
+                return _c("PostItems", { key: post.id, attrs: { post: post } })
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  attrs: { disabled: _vm.pages.current === 1 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.pages.current - 1)
+                    },
+                  },
+                },
+                [_vm._v("Prev")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  attrs: { disabled: _vm.pages.current === _vm.pages.last },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.pages.current + 1)
+                    },
+                  },
+                },
+                [_vm._v("Next")]
+              ),
+            ],
+            2
+          ),
+        ])
+      : _c("div", [_vm._m(0)]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("h3", [_vm._v("Loading...")]),
+    ])
+  },
+]
 render._withStripped = true
 
 

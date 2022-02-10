@@ -1,23 +1,32 @@
 <template>
   <main>
-    <div class="container">
-      <h1>i miei post</h1>
-      <PostItems
-        v-for="post in posts"
-        :key="post.id" 
-        :post = "post"
-      />
+    <div v-if="posts">
+      <div class="container">
+        <h1>i miei post</h1>
+        <PostItems
+          v-for="post in posts"
+          :key="post.id" 
+          :post = "post"
+        />
 
-      <button
-      @click="getPosts(pages.current -1)"
-      :disabled = "pages.current === 1"
-      >Prev</button>
-      <button
-      @click="getPosts(pages.current +1)"
-      :disabled = "pages.current === pages.last"
-      >Next</button>
+        <button
+        @click="getPosts(pages.current -1)"
+        :disabled = "pages.current === 1"
+        >Prev</button>
+        <button
+        @click="getPosts(pages.current +1)"
+        :disabled = "pages.current === pages.last"
+        >Next</button>
 
+      </div>
     </div>
+    <div v-else>
+      <div class="container">
+         <h3>Loading...</h3>
+      </div>
+     
+    </div>
+   
   </main>
 
   
@@ -61,5 +70,8 @@ export default {
 <style lang="scss" scoped>
 main{
   padding: 30px 0;
+  .container{
+    margin-bottom: 50px;
+  }
 }
 </style>
